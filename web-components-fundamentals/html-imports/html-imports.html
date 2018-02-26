@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Web Components</title>
+        <link rel="import" href="notice.html" id="notice" />
+    </head>
+    <body>
+        <script>
+            const $link = document.getElementById("notice");
+            const content = $link.import.querySelector(".notice-frame");
+            document.body.appendChild(content);
+        </script>
+    </body>
+</html>
