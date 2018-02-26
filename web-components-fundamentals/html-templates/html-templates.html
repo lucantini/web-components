@@ -3,29 +3,28 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Web Components</title>
-	<style>
-		p {
-			color: red;
-		}
-	</style>
 </head>
 <body>
-<p>Par</p>
-<div id="simple-div"></div>
-<p>Par</p>
-<script>
-	let $div = document.getElementById('simple-div');
-	$div.attachShadow({ mode: 'open' });
-	$div.shadowRoot.innerHTML = `
-				<style>
-					p {
-						color: blue;
-					}
-				</style>
-				<p>
-					Par
-				</p>
-			`
-</script>
+	<template id="list-item">
+		<li>
+			<h1>A Movie Title</h1>
+			<p>A Movie Plot</p>
+		</li>
+	</template>
+	<ul id="movie-list"></ul>
+	<script>
+		const movies = [{
+			title: 'Lord of the Rings',
+			plot: 'The ring must be destroyed.'
+		}];
+		const $template = document.getElementById("list-item");
+		const $list = document.getElementById("movie-list");
+		movies.forEach((movie) => {
+			const $clone = document.importNode($template.content, true);
+			$clone.querySelector("h1").innerHTML = movie.title;
+			$clone.querySelector("p").innerHTML = movie.plot;
+			$list.appendChild($clone);
+		})
+	</script>
 </body>
 </html>
