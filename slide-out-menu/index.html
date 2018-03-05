@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Web Components</title>
+	<script src="rw-slide-menu.js"></script>
+	<style>
+		html, body {
+			margin: 0;
+		}
+		.controls {
+			display: flex;
+			justify-content: center;
+		}
+		.btn {
+			padding: 10px;
+			margin: 10px;
+			font-family: monospace;
+			color: white;
+			background-color: #3c3c3c;
+			border: none;
+			border-radius: 2px;
+			cursor: pointer;
+		}
+		.btn:hover {
+			background-color: #4b4b4b;
+		}
+	</style>
+</head>
+<body>
+	<rw-slide-menu id="menu" theme="red">
+		<h3 slot="title">
+			Menu Title
+		</h3>
+		<a href="#">One</a>
+		<a href="#">Two</a>
+		<a href="#">Three</a>
+	</rw-slide-menu>
+	<div class="controls">
+		<button class="btn" data-action="open">Open Menu</button>
+		<button class="btn" data-action="close">Close Menu</button>
+	</div>
+	<script>
+		const $controls = document.querySelector(".controls");
+		const $menu = document.getElementById("menu");
+		$controls.addEventListener("click", (event) => {
+			switch (event.target.dataset.action) {
+				case "open":
+					$menu.open = true;
+					break;
+				case "close":
+					$menu.open = false;
+					break;
+			}
+		})
+	</script>
+</body>
+</html>
